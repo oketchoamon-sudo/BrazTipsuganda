@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAZ ODDS - Uganda Betting Tips</title>
+    <style>
+        :root {
+            --bg-dark: #111111;
+            --bg-card: #1c1c1c;
+            --gold: #d4af37;
+            --gold-hover: #b8962e;
+            --white: #ffffff;
+            --text-grey: #aaaaaa;
+            --danger-red: #ff3333;
+            --whatsapp-green: #25D366;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
+            border-bottom: 2px solid var(--gold);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .logo-top {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .logo-main {
+            color: var(--white);
+            font-size: 3.5rem;
+            font-weight: bold;
+            line-height: 1;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .logo-bottom {
+            color: var(--gold);
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: 4px;
+        }
+
+        .slogan {
+            color: var(--gold);
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        .slogan::before, .slogan::after { content: "— "; }
+
+        nav {
+            background-color: #0a0a0a;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--gold); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .section-title {
+            text-align: center;
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-grey);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .motto-box {
+            background-color: rgba(212, 175, 55, 0.05);
+            border: 1px solid var(--gold);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .motto-box h2 {
+            color: var(--gold);
+            margin-top: 0;
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* WINNING RESULTS GRID */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 600px) {
+            .results-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .result-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .result-card:hover { transform: translateY(-5px); }
+
+        .result-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 2px solid var(--gold);
+            background-color: #000;
+            min-height: 300px;
+            object-fit: cover;
+        }
+
+        .result-caption {
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--gold);
+            font-family: 'Arial', sans-serif;
+            font-size: 0.95rem;
+            margin: 0;
+            background-color: #151515;
+        }
+
+        /* TIP CARDS */
+        .tip-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .tip-card.locked {
+            border-left: 5px solid var(--danger-red);
+            background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+        }
+
+        .tip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tip-badge {
+            background-color: var(--gold);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .tip-badge.red { background-color: var(--danger-red); color: white; }
+        .tip-time { color: var(--text-grey); font-size: 0.85rem; font-family: 'Arial', sans-serif; }
+        .tip-match { font-size: 1.2rem; font-weight: bold; color: var(--white); margin: 10px 0; font-family: 'Arial', sans-serif; }
+
+        .tip-details {
+            display: flex;
+            justify-content: space-between;
+            background-color: #121212;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tip-detail-item { text-align: center; flex: 1; min-width: 80px; }
+        .tip-detail-item span { display: block; font-size: 0.75rem; color: var(--text-grey); text-transform: uppercase; font-family: 'Arial', sans-serif; }
+        .tip-detail-item strong { color: var(--gold); font-size: 1.1rem; font-family: 'Arial', sans-serif; }
+
+        .locked-overlay { text-align: center; padding: 15px; background-color: rgba(0,0,0,0.5); border-radius: 8px; margin-top: 10px; }
+        .locked-overlay p { margin: 0 0 10px 0; color: var(--danger-red); font-weight: bold; font-family: 'Arial', sans-serif; }
+        .blur-text { filter: blur(5px); user-select: none; }
+
+        /* CHANNEL BANNER */
+        .channel-banner {
+            background: linear-gradient(90deg, #1a1a1a, #222222);
+            border: 1px solid var(--whatsapp-green);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .channel-banner h3 { margin: 0 0 10px 0; color: var(--white); font-size: 1.4rem; font-family: 'Arial', sans-serif; }
+        .channel-banner p { margin: 0 0 15px 0; color: var(--text-grey); font-size: 0.95rem; font-family: 'Arial', sans-serif; }
+
+        .channel-btn {
+            display: inline-block;
+            background-color: var(--whatsapp-green);
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            font-family: 'Arial', sans-serif;
+            transition: 0.3s;
+        }
+
+        .channel-btn:hover { background-color: #1ebe5d; transform: scale(1.05); }
+
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
+        @media (min-width: 768px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+            border-top: 4px solid var(--gold);
+        }
+
+        .card h3 { margin-top: 0; font-size: 1.5rem; color: var(--white); text-align: center; font-family: 'Arial', sans-serif; text-transform: uppercase; }
+        .price { font-size: 2rem; font-weight: bold; color: var(--gold); text-align: center; display: block; margin: 10px 0; font-family: 'Arial', sans-serif; }
+        .price span { font-size: 1rem; color: var(--text-grey); font-weight: normal; }
+
+        ul { list-style: none; padding: 0; font-family: 'Arial', sans-serif; }
+        ul li { padding: 8px 0; border-bottom: 1px solid #333; display: flex; align-items: center; }
+        ul li::before { content: "✔"; color: var(--gold); margin-right: 10px; font-weight: bold; }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: var(--gold);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .btn:hover { background-color: var(--gold-hover); transform: translateY(-2px); }
+        .btn-whatsapp { background-color: var(--whatsapp-green); color: #000; }
+        .btn-whatsapp:hover { background-color: #1ebe5d; }
+
+        /* WARNING & CONTACT */
+        .warning-box { background-color: #2a0000; border-left: 5px solid var(--danger-red); padding: 15px; margin-top: 30px; border-radius: 5px; font-family: 'Arial', sans-serif; }
+        .warning-box h4 { color: var(--danger-red); margin: 0 0 5px 0; }
+
+        .message-box { background-color: #1a1a1a; border: 1px dashed var(--gold); padding: 20px; margin-top: 40px; border-radius: 8px; font-family: 'Arial', sans-serif; }
+        .message-box textarea { width: 100%; height: 100px; background-color: #000; color: var(--gold); border: 1px solid #444; padding: 10px; font-family: monospace; font-size: 1rem; box-sizing: border-box; }
+        .copy-btn { background-color: #333; color: white; border: 1px solid var(--gold); padding: 8px 15px; cursor: pointer; margin-top: 10px; border-radius: 4px; }
+        .copy-btn:hover { background-color: var(--gold); color: #000; }
+
+        footer { text-align: center; padding: 20px; color: var(--text-grey); font-size: 0.8rem; border-top: 1px solid #333; margin-top: 50px; font-family: 'Arial', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <span class="logo-top">Uganda Betting Tips</span>
+            <h1 class="logo-main">BRAZ</h1>
+            <h1 class="logo-bottom">ODDS</h1>
+        </div>
+        <div class="slogan">Together We Win</div>
+    </header>
+
+    <nav>
+        <a href="#results">Winning Results</a>
+        <a href="#free-tips">Free Tips</a>
+        <a href="#pricing">VIP Plans</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+
+        <div class="motto-box">
+            <h2>OUR MOTTO</h2>
+            <p><strong>"We trust ourselves in analysis and we value clients' money."</strong></p>
+            <p style="font-size: 0.9rem; color: #ccc;">Make sure you stake high because these odds are safe and winning is a must.</p>
+        </div>
+
+        <!-- ===== WINNING RESULTS SECTION ===== -->
+        <h2 id="results" class="section-title">🏆 Winning Results</h2>
+        <p class="section-subtitle">Proof of our recent wins. Together We Win!</p>
+
+        <div class="results-grid">
+            
+            <div class="result-card">
+                <img src="https://via.placeholder.com/400x500/111111/d4af37?text=Upload+Image+1" alt="Pending BetPawa Slip">
+                <p class="result-caption">Pending Ticket - 4 Games @ 11.27 Odds</p>
+            </div>
+
+            <div class="result-card">
+                <img src="https://via.placeholder.com/400x500/111111/d4af37?text=Upload+Image+2" alt="Won BetPawa Slip">
+                <p class="result-caption">WON! 1,243,186 UGX Payout - BetPawa</p>
+            </div>
+
+            <div class="result-card">
+                <img src="https://via.placeholder.com/400x500/111111/d4af37?text=Upload+Image+3" alt="217.56 Odds Slip">
+                <p class="result-caption">217.56 Odds - HT/FT Special</p>
+            </div>
+
+            <div class="result-card">
+                <img src="https://via.placeholder.com/400x500/111111/d4af37?text=Upload+Image+4" alt="Won 21,756 Euro Slip">
+                <p class="result-caption">WON! 21,756 € Payout - Accumulator</p>
+            </div>
+
+        </div>
+        <!-- ===== END WINNING RESULTS ===== -->
+
+        <!-- FREE TIPS -->
+        <h2 id="free-tips" class="section-title">📢 Free Tips & Channel</h2>
+        <p class="section-subtitle">Join our channel for daily free predictions and updates</p>
+
+        <div class="channel-banner">
+            <h3>Join Our Free WhatsApp Channel</h3>
+            <p>Get free tips uploaded daily at 9:00 AM & 3:00 PM</p>
+            <a href="https://whatsapp.com/channel/0029Vb94zrVJZg4ESgk6mx1b" target="_blank" class="channel-btn">📲 Join Channel Now</a>
+        </div>
+
+        <h3 style="color: var(--gold); margin-top: 30px; font-family: Arial;">✅ Today's Free Tip</h3>
+        
+        <div class="tip-card">
+            <div class="tip-header">
+                <span class="tip-badge">FREE TIP</span>
+                <span class="tip-time">🕒 Kickoff: 4:00 PM</span>
+            </div>
+            <div class="tip-match">Team A vs Team B</div>
+            <div class="tip-details">
+                <div class="tip-detail-item"><span>Prediction</span><strong>Over 2.5</strong></div>
+                <div class="tip-detail-item"><span>Odds</span><strong>1.80</strong></div>
+                <div class="tip-detail-item"><span>League</span><strong>EPL</strong></div>
+            </div>
+        </div>
+
+        <h3 style="color: var(--gold); margin-top: 35px; font-family: Arial;">🔒 VIP Tips (Locked)</h3>
+        <p class="section-subtitle">Subscribe to unlock today's 10+ odds tickets</p>
+
+        <div class="tip-card locked">
+            <div class="tip-header">
+                <span class="tip-badge red">VIP ONLY</span>
+                <span class="tip-time">🕒 Kickoff: 6:00 PM</span>
+            </div>
+            <div class="tip-match blur-text">████████ vs ████████</div>
+            <div class="tip-details">
+                <div class="tip-detail-item"><span>Prediction</span><strong class="blur-text">█████</strong></div>
+                <div class="tip-detail-item"><span>Odds</span><strong>10.50</strong></div>
+                <div class="tip-detail-item"><span>League</span><strong>Serie A</strong></div>
+            </div>
+            <div class="locked-overlay">
+                <p>🔒 Subscribe to see this tip</p>
+                <a href="#pricing" class="btn" style="width: auto; display: inline-block; padding: 10px 25px;">Unlock Now</a>
+            </div>
+        </div>
+
+        <!-- PRICING -->
+        <h2 id="pricing" class="section-title">💎 VIP Subscription Plans</h2>
+        <p class="section-subtitle">Choose the plan that fits your winning style</p>
+
+        <div class="pricing-grid">
+            <div class="card">
+                <h3>DAILY VIP</h3>
+                <span class="price">20,000 <span>UGX</span></span>
+                <p style="text-align: center; color: #ccc;">Per Day</p>
+                <ul>
+                    <li>2 Tickets Daily (Early & Late Kickoff)</li>
+                    <li>Odds: 10+</li>
+                    <li>High Stake Recommendation</li>
+                    <li>Instant Delivery</li>
+                </ul>
+                <a href="#contact" class="btn">Subscribe Daily</a>
+            </div>
+
+            <div class="card">
+                <h3>MONTHLY VIP</h3>
+                <span class="price">200,000 <span>UGX</span></span>
+                <p style="text-align: center; color: #ccc;">Per Month</p>
+                <ul>
+                    <li>2 Tickets Daily (Early & Late Kickoff)</li>
+                    <li>Odds: 10+</li>
+                    <li>High Stake Recommendation</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="#contact" class="btn">Subscribe Monthly</a>
+            </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 30px;">
+            <h3>OTHER GROUPS ACCESS</h3>
+            <p style="text-align: center; font-family: Arial;">Join <strong>Odd 5, Odd 2, Akatafa, Odd 1.5+, & Akatambula Weekly</strong> groups.</p>
+            <span class="price">50,000 <span>UGX / Month</span></span>
+            <ul>
+                <li>Access to all specialized low-odd groups</li>
+                <li>Akatambula Weekly tips</li>
+                <li>Perfect for consistent small wins</li>
+            </ul>
+            <a href="#contact" class="btn">Join All Groups</a>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--danger-red);">
+            <h3 style="color: var(--danger-red);">FIXED VIP (HT/FT)</h3>
+            <p style="text-align: center; font-family: Arial;">Half Time / Full Time Special Games</p>
+            <span class="price">40,000 <span>UGX</span></span>
+            <ul>
+                <li><strong>Odds Range: 30+</strong></li>
+                <li>High Risk / High Reward</li>
+                <li>Monthly subscription accepted only after 5 consistent winning days</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--danger-red); text-align: center; font-family: Arial;">
+                *Our job is to invest big to buy these. We sell to recover losses and ensure clients win.
+                <br><strong>DO NOT SHARE YOUR TICKET IF YOU GET ACCESS.</strong>
+            </p>
+            <a href="#contact" class="btn" style="background-color: var(--danger-red); color: white;">Get Fixed VIP</a>
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ AGE RESTRICTION 20+</h4>
+            <p style="margin: 0; color: #ddd;">Betting is not for persons under the age of 18. Our services are strictly for individuals aged 20 and above. Please gamble responsibly.</p>
+        </div>
+
+        <!-- CONTACT & MESSAGE SECTION -->
+        <div id="contact" class="message-box">
+            <h3 style="color: var(--gold); margin-top: 0;">Interested? Send us this message:</h3>
+            <p>Copy the message below and send it to us on WhatsApp to get started:</p>
+            
+            <textarea id="msgText" readonly>
+Sir, have seen your performance in the channel. I also want to see my luck today. Send me the payment method so I can receive my ticket.
+            </textarea>
+            <button class="copy-btn" onclick="copyMessage()">Copy Message</button>
+            <p id="copyStatus" style="color: var(--gold); font-size: 0.9rem; display: none;">Copied!</p>
+            
+            <!-- NEW ADMIN CHAT BUTTON -->
+            <div style="margin-top: 30px; text-align: center; border-top: 1px solid #333; padding-top: 25px;">
+                <h3 style="color: var(--whatsapp-green); margin: 0 0 10px 0; font-family: 'Arial', sans-serif;">Chat the Admin Now for Details</h3>
+                <p style="color: var(--text-grey); margin-bottom: 15px;">Click the button below to start a direct chat with us.</p>
+                <a href="https://wa.me/message/GZGY2MD5UFBPJ1" target="_blank" class="btn btn-whatsapp" style="max-width: 350px; margin: 0 auto; display: block;">
+                    💬 Chat Admin on WhatsApp
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2023 BRAZ ODDS. All rights reserved.</p>
+        <p>Together We Win.</p>
+    </footer>
+
+    <script>
+        function copyMessage() {
+            var copyText = document.getElementById("msgText");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            
+            var status = document.getElementById("copyStatus");
+            status.style.display = "block";
+            setTimeout(function(){ status.style.display = "none"; }, 2000);
+        }
+    </script>
+
+</body>
+</html>
